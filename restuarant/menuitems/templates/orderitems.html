@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Food</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Food Ordering App</h1>
+</header>
+
+<div class="container">
+  <div class="top-right">
+    <button class="order-button" id="placeOrderBtn">Your Order</button>
+  </div>
+  
+  <h2>Menu:</h2>
+  <div class="food-list" id="foodList">
+    <!-- Food items will be added here dynamically -->
+  </div>
+  
+  <h2>Your Order:</h2>
+  <div class="order-list" id="orderList">
+    <!-- Order items will be added here dynamically -->
+  </div>
+  
+  <h2>Ordered Items:</h2>
+  <table id="orderedItemsTable">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Ordered items will be added here dynamically -->
+    </tbody>
+  </table>
+  
+  <div id="orderedItems"></div>
+</div>
+
+<footer>
+  <p>&copy; 2024 Food Ordering App. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
