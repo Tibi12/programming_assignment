@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def items(request):
+    context = {
+        'message': 'Welcome to my Django App!'
+    }
+    return render(request, 'adminpage.html', context)
