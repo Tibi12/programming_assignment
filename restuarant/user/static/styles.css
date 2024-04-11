@@ -1,43 +1,71 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Reset default browser styles */
+body, html {
     margin: 0;
     padding: 0;
 }
+
+/* Center the content vertically and horizontally */
 .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Custom styles */
+.card {
     max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
+    border-radius: 10px;
     background-color: #fff;
-    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
-    text-align: center;
     margin-bottom: 20px;
-}
-label {
+    font-size: 24px;
     font-weight: bold;
+    color: #333;
 }
-input[type="text"],
-input[type="password"] {
+
+.message {
+    margin-bottom: 30px;
+    font-size: 16px;
+    color: #555;
+}
+
+.icon {
+    margin-bottom: 20px;
+    font-size: 32px;
+    color: #007bff;
+}
+
+form input {
     width: 100%;
     padding: 10px;
-    margin: 5px 0 20px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-button[type="submit"] {
-    width: 100%;
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    border-radius: 5px;
     font-size: 16px;
 }
-button[type="submit"]:hover {
+
+form button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
     background-color: #0056b3;
+}
+
+/* Add spacing between form elements */
+.input-group {
+    margin-bottom: 20px;
 }
