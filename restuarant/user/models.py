@@ -5,11 +5,6 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     # Add any additional fields you need
 
-    class Meta:
-        # Specify unique related names for the groups and user_permissions fields
-        # to avoid clashes with the built-in User model
-        permissions = (
-            ('group_permissions', 'Group permissions'),
-            ('user_permissions', 'User permissions'),
-        )
+    def __str__(self):
+        return self.username
 
