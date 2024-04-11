@@ -14,7 +14,7 @@ def login(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect('home.html')
+            return redirect('user:home')
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
@@ -25,7 +25,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home.html')
+            return redirect('user:home')
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
