@@ -4,4 +4,7 @@ def home(request):
     context = {
         'message': 'Welcome to my Django App!'
     }
-    return render(request, 'login.html', context)
+    return render(request, 'home.html', context)
+
+def login(request):
+    return render(request, 'login.html')

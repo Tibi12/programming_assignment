@@ -4,31 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Restaurant</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'login.css' %}">
 </head>
 <body>
-    <header class="header">
-        <nav class="navbar">
-            <div class="container">
-                <div class="navbar-brand">
-                    <h1 class="restaurant-name">Restaurant Name</h1>
-                </div>
-                <div class="navbar-menu">
-                    <ul class="nav-links">
-                        <li><a href="#" class="nav-link">Login</a></li>
-                        <li><a href="#" class="nav-link">Signup</a></li>
-                    </ul>
-                </div>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
             </div>
-        </nav>
-    </header>
-    <main class="main-content">
-        <div class="container">
-            <div class="welcome-message">
-                <h2>Welcome to Restaurant</h2>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
             </div>
-        </div>
-    </main>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
 </html>
