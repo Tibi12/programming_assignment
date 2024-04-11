@@ -10,4 +10,12 @@ def login(request):
     return render(request, 'login.html')
 
 def signup(request):
-    return render(request, 'signup.html')
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserCreationForm()
+    return render(request, 'users/signup.html', {'form': form})
