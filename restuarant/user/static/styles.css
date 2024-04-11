@@ -1,71 +1,69 @@
 /* Reset default browser styles */
-body, html {
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-/* Center the content vertically and horizontally */
-.container {
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+.header {
+    background-color: #f2f2f2;
+    padding: 20px 0;
+}
+
+.navbar {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f8f9fa;
 }
 
-/* Custom styles */
-.card {
-    max-width: 400px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-h2 {
-    margin-bottom: 20px;
+.navbar-brand {
+    flex-grow: 1;
+}
+
+.restaurant-name {
     font-size: 24px;
-    font-weight: bold;
     color: #333;
 }
 
-.message {
-    margin-bottom: 30px;
-    font-size: 16px;
-    color: #555;
+.navbar-menu {
+    display: flex;
 }
 
-.icon {
-    margin-bottom: 20px;
-    font-size: 32px;
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
     color: #007bff;
 }
 
-form input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
+/* Main content styles */
+.main-content {
+    background-color: #fff;
+    padding: 50px 0;
+    text-align: center;
 }
 
-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-/* Add spacing between form elements */
-.input-group {
-    margin-bottom: 20px;
+.welcome-message {
+    font-size: 32px;
+    color: #666;
 }
