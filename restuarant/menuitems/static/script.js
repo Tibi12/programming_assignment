@@ -1,3 +1,4 @@
+{% load static %}
 document.addEventListener('DOMContentLoaded', function() {
     // Existing code...
   
