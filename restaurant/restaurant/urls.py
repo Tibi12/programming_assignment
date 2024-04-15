@@ -1,5 +1,5 @@
 """
-URL configuration for restuarant project.
+URL configuration for restaurant project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -20,5 +20,5 @@ from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/',include('user.urls')),
-    path('menuitems/',include('menuitems.urls'))
+    path('menu/',include('menu.urls'))
 ]
