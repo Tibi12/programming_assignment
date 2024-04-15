@@ -34,7 +34,7 @@ ALLOWED_HOSTS = ['restaurant.northeurope.cloudapp.azure.com']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'user.apps.UserConfig',
-    'menuitems.apps.MenuitemsConfig',
+    'menu.apps.MenuConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
