@@ -1,11 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'menu_styles.css' %}" />
 </head>
+
 <body>
-    <h1>Cart Page</h1>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-items">
+                <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}">Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="heading">Cart</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>KFC</td>
+                    <td>3</td>
+                    <td>33</td>
+                    <td>99</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="cart-total">
+            <p>Grand Total: $ <span>99</span></p>
+            <form method="post">
+                <a href="#">Place Order</a>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
