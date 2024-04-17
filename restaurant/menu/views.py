@@ -9,3 +9,13 @@ def items(request):
 
 def menu_cart(request):
     return render(request, 'cart.html')
+
+def menu_cart(request):
+    return render(request, 'cart.html')
+
+
+def menu_home(request):
+    menus = Menu.objects.all()
+        
+    context = { 'menus': menus }
+    return render(request, 'menu.html', context)

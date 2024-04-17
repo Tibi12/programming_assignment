@@ -1,0 +1,104 @@
+body {
+    background-color: #31363f;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #ee4266;
+    padding: 2rem 0rem;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-items {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-item {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.nav-item:hover {
+    color: #fff3c7;
+}
+
+.container {
+    max-width: 70%;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+}
+
+
+.card {
+    background-color: white;
+    height: 400px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.card img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-body {
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    flex: 1;
+    margin-top: 1rem;
+}
+
+.card-sub-heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item-name {
+    font-weight: bold;
+    padding: 0.5rem 0rem;
+}
+
+.item-price {
+    padding: 0.5rem 0rem;
+    color: #007f73;
+    font-weight: 900;
+}
+
+.item-description {
+    margin-top: 0.8rem;
+    font-size: 0.8rem;
+    height: 50px;
+    overflow: hidden;
+}
+
+.add-item-btn {
+    background-color: #ee4266;
+    padding: 1rem;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    font-family: sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100% !important;
+}
