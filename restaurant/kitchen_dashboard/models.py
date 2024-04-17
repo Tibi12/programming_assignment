@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Table(models.Model):
+    table_number = models.PositiveIntegerField(unique=True)
+    status = models.CharField(max_length=10, choices=[('occupied', 'Occupied'), ('free', 'Free')], default='free')
