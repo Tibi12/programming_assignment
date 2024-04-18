@@ -45,13 +45,13 @@
                     </td>
                     <td>
                         {% if item.status == "pending" %}
-                        <form id="order-accept-form" method="post" action="#">
+                        <form id="order-accept-form" method="post" action="{% url 'accept_order' %}">
                             {% csrf_token %}
                             <input type="hidden" name="order_id" value="{{item.id}}" />
                             <input type="submit" class="action-btn accept-btn" value="Accept" />
                         </form>
                         {% elif item.status == "cooking" %}
-                        <form id="order-accept-form" method="post" action="#">
+                        <form id="order-accept-form" method="post" action="{% url 'deliver_order' %}">
                             {% csrf_token %}
                             <input type="hidden" name="order_id" value="{{item.id}}" />
                             <input type="submit" class="action-btn deliver-btn" value="Deliver" />
