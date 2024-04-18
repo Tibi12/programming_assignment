@@ -6,3 +6,11 @@ def kitchen_dashboard(request):
     context = {'orders': orders}
         
     return render(request, 'dashboard.html', context)
+
+def accept_order(request):
+    order_id = request.POST.get('order_id')
+    order = Order.objects.get(pk=order_id)
+    order.status = "cooking"
+    order.save()
+    
+    return redirect('kitchen_dashboard')
