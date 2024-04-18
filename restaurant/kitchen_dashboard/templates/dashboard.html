@@ -21,95 +21,48 @@
     <div class="container">
         <h1 class="heading">Dashboard</h1>
         <table class="cart-table">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Table</th>
-              <th>Item</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>2</td>
-              <td>3</td>
-              <td>Pizza</td>
-              <td>3</td>
-              <td>$68</td>
-              <td>
-                <span class="status-chip pending"
-                  >PENDING</span
-                >
-              </td>
-              <td>
-                <form id="order-accept-form" method="post" action="#">
-                  <input type="submit" class="action-btn accept-btn" value="Accept" />
-                </form>
-              </td>
-            </tr>
-            thead>
-          <tbody>
-            <tr>
-              <td>2</td>
-              <td>3</td>
-              <td>Pizza</td>
-              <td>3</td>
-              <td>$68</td>
-              <td>
-                <span class="status-chip pending"
-                  >PENDING</span
-                >
-              </td>
-              <td>
-                <form id="order-accept-form" method="post" action="#">
-                  <input type="submit" class="action-btn accept-btn" value="Accept" />
-                </form>
-              </td>
-            </tr>
-            thead>
-          <tbody>
-            <tr>
-              <td>2</td>
-              <td>3</td>
-              <td>Pizza</td>
-              <td>3</td>
-              <td>$68</td>
-              <td>
-                <span class="status-chip pending"
-                  >PENDING</span
-                >
-              </td>
-              <td>
-                <form id="order-accept-form" method="post" action="#">
-                  <input type="submit" class="action-btn accept-btn" value="Accept" />
-                </form>
-              </td>
-            </tr>
-            thead>
-          <tbody>
-            <tr>
-              <td>2</td>
-              <td>3</td>
-              <td>Pizza</td>
-              <td>3</td>
-              <td>$68</td>
-              <td>
-                <span class="status-chip pending"
-                  >PENDING</span
-                >
-              </td>
-              <td>
-                <form id="order-accept-form" method="post" action="#">
-                  <input type="submit" class="action-btn accept-btn" value="Accept" />
-                </form>
-              </td>
-            </tr>
-          </tbody>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Table</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.table.table_number }}</td>
+                    <td>{{ item.menu_item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <span class="status-chip {{ item.status }}">{{ item.status }}</span>
+                    </td>
+                    <td>
+                        {% if item.status == "pending" %}
+                        <form id="order-accept-form" method="post" action="#">
+                            {% csrf_token %}
+                            <input type="hidden" name="order_id" value="{{item.id}}" />
+                            <input type="submit" class="action-btn accept-btn" value="Accept" />
+                        </form>
+                        {% elif item.status == "cooking" %}
+                        <form id="order-accept-form" method="post" action="#">
+                            {% csrf_token %}
+                            <input type="hidden" name="order_id" value="{{item.id}}" />
+                            <input type="submit" class="action-btn deliver-btn" value="Deliver" />
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
-      </div>
+    </div>
 </body>
 
 </html>
