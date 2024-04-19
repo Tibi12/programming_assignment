@@ -8,7 +8,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-def login(request):
+def user_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
