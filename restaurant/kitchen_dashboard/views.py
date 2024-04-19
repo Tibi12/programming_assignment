@@ -3,8 +3,32 @@ from .models import Order
 
 def kitchen_dashboard(request):
     orders = Order.objects.filter(order_type="active").order_by('table')  
+
+    free_table_flags = {}
+    free_tables = {}
+    
+    for item in orders:
+        free_table_flags[item.table.table_number] = {
+            'pending': 0,
+            'cooking': 0,
+            'completed': 0,
+            'total': 0
+        }
+    
+    for item in orders:
+        free_table_flags[item.table.table_number][item.status] += 1
+        free_table_flags[item.table.table_number]['total'] += 1    
         
-    context = {'orders': orders}
+        if free_table_flags[item.table.table_number]['total'] == free_table_flags[item.table.table_number]['completed']:
+            free_tables[item.table.table_number] = True
+        else:
+            free_tables[item.table.table_number] = False
+                        
+    for order in orders:
+        if free_tables[order.table.table_number] == True:
+            order.vacate = True
+        
+    context = {'orders': orders, 'free_tables': free_tables}
         
     return render(request, 'dashboard.html', context)
     
