@@ -42,11 +42,12 @@
             </tbody>
         </table>
         <div class="cart-total">
-            <p>Grand Total: $ <span>99</span></p>
-            <form method="post">
-                <a href="#">Place Order</a>
+            <p>Grand Total: $ <span>{{ total_price }}</span></p>
+            <form id="order-form" method="post">
+              {% csrf_token %}
+              <a href="#">Place Order</a>
             </form>
-        </div>
+          </div>
     </div>
 </body>
 
