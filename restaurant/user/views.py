@@ -27,10 +27,11 @@ def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            user_name = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {user_name}.')
-            return redirect('user:home')
+            user = form.save()
+            return redirect('user_login')
+        else:
+            print("error")
+            print(form.errors)
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
