@@ -1,0 +1,39 @@
+body {
+    background-color: #31363f;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #ee4266;
+    padding: 2rem 0rem;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-items {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-item {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none !important;
+}
+
+.nav-item:hover {
+    color: #fff3c7;
+}
+
+.container {
+    max-width: 70%;
+    margin: 0 auto;
+}
