@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard_styles.css' %}" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-items">
+                <a href="#">Orders</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="heading">Dashboard</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Table</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.table.table_number }}</td>
+                    <td>{{ item.menu_item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <span class="status-chip {{ item.status }}">{{ item.status }}</span>
+                    </td>
+                    <td>
+                        {% if item.status == "pending" %}
+                        <form id="order-accept-form" method="post" action="{% url 'accept_order' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="order_id" value="{{item.id}}" />
+                            <input type="submit" class="action-btn accept-btn" value="Accept" />
+                        </form>
+                        {% elif item.status == "cooking" %}
+                        <form id="order-accept-form" method="post" action="{% url 'deliver_order' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="order_id" value="{{item.id}}" />
+                            <input type="submit" class="action-btn deliver-btn" value="Deliver" />
+                        </form>
+                        {% elif item.vacate %}
+                        <form id="order-accept-form" method="post" action="{% url 'vacate_table' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="table_number" value="{{item.table.table_number}}" />
+                            <input type="submit" class="action-btn free-btn"
+                                value="Free Table {{item.table.table_number}}" />
+                        </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
