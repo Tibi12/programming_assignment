@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Order
+from .models import Table, Order
 
 def kitchen_dashboard(request):
     orders = Order.objects.filter(order_type="active").order_by('table')  
@@ -45,5 +45,21 @@ def deliver_order(request):
     order = Order.objects.get(pk=order_id)
     order.status = "completed"
     order.save()
+    
+    return redirect('kitchen_dashboard')
+
+
+def vacate_table(request):
+    table_number = request.POST.get('table_number')
+
+    table = Table.objects.get(table_number=table_number)
+    orders = Order.objects.filter(table=table)
+    
+    for item in orders:
+        item.order_type = "inactive"
+        item.save()
+    
+    table.status = "free"
+    table.save()
     
     return redirect('kitchen_dashboard')
