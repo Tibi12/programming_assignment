@@ -1,18 +1,14 @@
 from django.shortcuts import render
-
-
-def items(request):
-    context = {
-        'message': 'Welcome to my Django App!'
-    }
-    return render(request, 'orderitems.html', context)
-
+from kitchen_dashboard.models import Table
+from .models import Menu
 def menu_cart(request):
     return render(request, 'cart.html')
 
 
 def menu_home(request):
+    tables = Table.objects.all()
+    print(tables)
     menus = Menu.objects.all()
         
-    context = { 'menus': menus }
+    context = { 'tables': tables, 'menus': menus }
     return render(request, 'menu.html', context)

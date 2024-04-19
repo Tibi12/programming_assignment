@@ -23,42 +23,22 @@
     <div class="container">
         <h1 class="heading">Welcome to Our Restaurant!</h1>
         <div class="grid">
+            {% for menu in menus %}
             <div class="card">
-                <img src="https://png.pngtree.com/thumb_back/fw800/background/20230902/pngtree-various-fast-food-items-including-chicken-and-pizza-image_13158922.jpg" />
+                <img src="{{ menu.url }}" />
                 <div class="card-body">
                     <div class="card-sub-heading">
-                        <span class="item-name">KFC</span><span class="item-price">$58</span>
+                        <span class="item-name">{{ menu.name }}</span><span class="item-price">${{ menu.price }}</span>
                     </div>
-                    <span class="item-description">KFC</span>
+                    <span class="item-description">{{ menu.description }}</span>
                 </div>
-                <form class="" method="post" action="">
+                <form class="add-item-form" method="post" action="{% url 'add_to_menu_cart' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="menu_id" value="{{ menu.id }}" />
                     <button type="submit" class="add-item-btn">Add item</button>
                 </form>
             </div>
-            <div class="card">
-                <img src="https://png.pngtree.com/thumb_back/fw800/background/20230902/pngtree-various-fast-food-items-including-chicken-and-pizza-image_13158922.jpg" />
-                <div class="card-body">
-                    <div class="card-sub-heading">
-                        <span class="item-name">KFC</span><span class="item-price">$58</span>
-                    </div>
-                    <span class="item-description">KFC</span>
-                </div>
-                <form class="" method="post" action="">
-                    <button type="submit" class="add-item-btn">Add item</button>
-                </form>
-            </div>
-            <div class="card">
-                <img src="https://png.pngtree.com/thumb_back/fw800/background/20230902/pngtree-various-fast-food-items-including-chicken-and-pizza-image_13158922.jpg" />
-                <div class="card-body">
-                    <div class="card-sub-heading">
-                        <span class="item-name">KFC</span><span class="item-price">$58</span>
-                    </div>
-                    <span class="item-description">KFC</span>
-                </div>
-                <form class="" method="post" action="">
-                    <button type="submit" class="add-item-btn">Add item</button>
-                </form>
-            </div>
+            {% endfor %}
         </div>
     </div>
 
