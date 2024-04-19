@@ -14,6 +14,7 @@
         <div class="container">
             <div class="nav-items">
                 <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}">Home</a>
+                <div class="choose-table">Chosen Table : {{ chosen_table }}</div>
             </div>
         </div>
     </nav>
@@ -30,12 +31,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>KFC</td>
-                    <td>3</td>
-                    <td>33</td>
-                    <td>99</td>
-                </tr>
+                {% for item in table_carts %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.total_price }}</td>
+          </tr>
+          {% endfor %}
             </tbody>
         </table>
         <div class="cart-total">

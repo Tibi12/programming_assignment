@@ -8,7 +8,9 @@ def menu_cart(request):
     table_carts = TableCart.objects.filter(table=table)
     print(table_carts)
 
-    return render(request, 'cart.html')
+    context = {'chosen_table': chosen_table, 'table_carts': table_carts}
+
+    return render(request, 'cart.html', context)
 
 def menu_home(request):
     tables = Table.objects.all()
