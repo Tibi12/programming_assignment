@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import CustomUserCreationForm,CustomAuthenticationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
 
 def home(request):
     context = {
@@ -17,7 +18,7 @@ def user_login(request):
             user = authenticate(request, username=username, password=password)
             if user:
                 login(request, user)
-                return redirect('user:home')
+                return redirect('kitchen_dashboard')
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
