@@ -56,6 +56,13 @@
                             <input type="hidden" name="order_id" value="{{item.id}}" />
                             <input type="submit" class="action-btn deliver-btn" value="Deliver" />
                         </form>
+                        {% elif item.vacate %}
+                        <form id="order-accept-form" method="post" action="{% url 'vacate_table' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="table_number" value="{{item.table.table_number}}" />
+                            <input type="submit" class="action-btn free-btn"
+                                value="Free Table {{item.table.table_number}}" />
+                        </form>
                         {% endif %}
                     </td>
                 </tr>
