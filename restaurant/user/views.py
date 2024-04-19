@@ -35,3 +35,7 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
+
+def log_out(request):
+    logout(request)
+    return redirect("user_login")
