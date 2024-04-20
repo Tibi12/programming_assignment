@@ -45,7 +45,7 @@
             <p>Grand Total: $ <span>{{ total_price }}</span></p>
             <form id="order-form" method="post">
               {% csrf_token %}
-              <a href="#">Place Order</a>
+              <a href="{% url 'place_order' chosen_table %}">Place Order</a>
             </form>
           </div>
     </div>
