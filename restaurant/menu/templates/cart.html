@@ -13,7 +13,7 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-items">
-                <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}">Home</a>
+                <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}?table={{ chosen_table }}">Home</a>
                 <div class="choose-table">Chosen Table : {{ chosen_table }}</div>
             </div>
         </div>
