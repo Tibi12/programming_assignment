@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Table, Order
+from django.urls import reverse
+from .models import Table, TableCart, Order
 
 def kitchen_dashboard(request):
     orders = Order.objects.filter(order_type="active").order_by('table')  
@@ -63,3 +64,29 @@ def vacate_table(request):
     table.save()
     
     return redirect('kitchen_dashboard')
+
+def place_order(request, table_number):
+    table = Table.objects.get(table_number=table_number)
+    
+    if table.status == "free":
+        table.status = "occupied"
+        table.save()
+        
+    table_cart = TableCart.objects.filter(table=table)
+    
+    for item in table_cart:
+        table = item.table
+        menu = item.menu_item
+        quantity = item.quantity
+        
+        
+        order = Order.objects.create(
+          table=table,
+          menu_item=menu,
+          quantity=quantity,
+        )
+        
+        order.save()
+        item.delete()
+
+    return redirect('menu_home')
