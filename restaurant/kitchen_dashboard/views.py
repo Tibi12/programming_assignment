@@ -32,7 +32,13 @@ def kitchen_dashboard(request):
     context = {'orders': orders, 'free_tables': free_tables}
         
     return render(request, 'dashboard.html', context)
-    
+
+def orders(request):    
+    orders = Order.objects.filter().order_by('-id')  
+    context = { 'orders': orders }
+        
+    return render(request, 'dashboard_orders.html', context)
+
 def accept_order(request):
     order_id = request.POST.get('order_id')
     order = Order.objects.get(pk=order_id)
