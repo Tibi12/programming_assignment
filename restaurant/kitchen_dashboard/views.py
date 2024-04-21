@@ -99,4 +99,4 @@ def place_order(request, table_number):
         order.save()
         item.delete()
 
-    return redirect('menu_home')
+    return redirect(reverse('menu_home') + '?table='+str(table_number))
