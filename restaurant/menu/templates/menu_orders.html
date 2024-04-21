@@ -1,11 +1,58 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'menu_styles.css' %}"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-items">
+          <a
+            style="text-decoration: none"
+            class="nav-item"
+            href="{% url 'menu_home' %}?table={{ chosen_table }}"
+            >Home</a
+          >
+        </div>
+        <div class="choose-table">Chosen Table : {{ chosen_table }}</div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1 class="heading">Orders</h1>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in orders %}
+          <tr>
+            <td>{{ item.menu_item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.menu_item.price }}</td>
+            <td>{{ item.price }}</td>
+            <td>
+              <span class="status-chip {{ item.status }}"
+                >{{ item.status }}</span
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>
