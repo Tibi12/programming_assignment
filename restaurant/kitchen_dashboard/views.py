@@ -3,6 +3,9 @@ from django.urls import reverse
 from .models import Table, TableCart, Order
 
 def kitchen_dashboard(request):
+    if not request.user.is_authenticated:
+        return redirect('user_login')
+        
     orders = Order.objects.filter(order_type="active").order_by('table')  
 
     free_table_flags = {}
