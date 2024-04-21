@@ -30,3 +30,10 @@ def menu_home(request):
         
     context = { 'tables': tables, 'menus': menus, 'already_selected': already_selected }
     return render(request, 'menu.html', context)
+
+def menu_orders(request):
+    chosen_table = request.GET.get('table_number')
+    table = Table.objects.get(table_number=chosen_table)
+    orders = Order.objects.filter(table=table, order_type="active")
+    context = {'chosen_table': chosen_table, 'orders': orders}
+    return render(request, 'menu_orders.html', context)
