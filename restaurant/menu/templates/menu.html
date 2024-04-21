@@ -13,9 +13,11 @@
     <nav class="navbar">
         <div class="container">
             <div class="nav-items">
-                <a style="text-decoration: none;" class="nav-item" href="#">Home</a>
-                <a class="nav-item" href="{% url 'menu_cart' %}">Cart</a>
-                <a class="nav-item" href="{% url 'menu_orders' %}">Orders</a>
+                <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}">Home</a>
+                <a class="nav-item" {% if not already_selected %} style="display: none" {% endif %}
+                    href="{% url 'menu_cart' %}">Cart</a>
+                <a class="nav-item" {% if not already_selected %} style="display: none" {% endif %}
+                    href="{% url 'menu_orders' %}">Orders</a>
             </div>
             <div>
                 {% if not already_selected %}
@@ -43,7 +45,11 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="instruction" {% if already_selected %} style="display: none;" {% endif %}>
+        <h1 class="heading">Choose a Table to continue!</h1>
+    </div>
+
+    <div class="container" id="menu-grid" {% if not already_selected %} style="display: none" {% endif %}>
         <h1 class="heading">Welcome to Our Restaurant!</h1>
         <div class="grid">
             {% for menu in menus %}
@@ -58,6 +64,7 @@
                 <form class="add-item-form" method="post" action="{% url 'add_to_menu_cart' %}">
                     {% csrf_token %}
                     <input type="hidden" name="menu_id" value="{{ menu.id }}" />
+                    <input type="hidden" name="table_number" id="chosen-table" value="" />
                     <button type="submit" class="add-item-btn">Add item</button>
                 </form>
             </div>
@@ -65,6 +72,63 @@
         </div>
     </div>
 
+    <script>
+        const tableSelect = document.getElementById("choose-table");
+        "{% if already_selected %}"
+        tableSelect.value = '{{ already_selected }}'
+        "{% endif %}"
+        const chosenTableInAllForms = document.querySelectorAll(
+            'input[name="table_number"]'
+        );
+        chosenTableInAllForms.forEach((tableInput) => {
+            tableInput.value = tableSelect.value;
+        });
+
+        const instruction = document.getElementById("instruction");
+        const menuGrid = document.getElementById("menu-grid");
+
+
+        const cartLink = document.querySelector('.nav-item[href*="cart"]');
+        cartLink.addEventListener("click", function (event) {
+            const selectedTable = tableSelect.value;
+            if (selectedTable) {
+                const url = new URL(this.href);
+                url.searchParams.set("table_number", selectedTable);
+                this.href = url.toString();
+            } else {
+                event.preventDefault();
+            }
+        });
+        const orderLink = document.querySelector('.nav-item[href*="order"]');
+        orderLink.addEventListener("click", function (event) {
+            const selectedTable = tableSelect.value;
+            if (selectedTable) {
+                const url = new URL(this.href);
+                url.searchParams.set("table_number", selectedTable);
+                this.href = url.toString();
+            } else {
+                event.preventDefault();
+            }
+        });
+
+        tableSelect.addEventListener("change", function (event) {
+            if (tableSelect.value) {
+                menuGrid.style.display = "block";
+                cartLink.style.display = "block";
+                orderLink.style.display = "block";
+                instruction.style.display = "none";
+            } else {
+                menuGrid.style.display = "none";
+                cartLink.style.display = "none";
+                orderLink.style.display = "none";
+                instruction.style.display = "block";
+            }
+
+            chosenTableInAllForms.forEach((tableInput) => {
+                tableInput.value = event.target.value;
+            });
+        });
+    </script>
 </body>
 
 </html>
