@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'menu_styles.css' %}" />
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-items">
+                <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}?table={{ chosen_table }}">Home</a>
+                <div class="choose-table">Chosen Table : {{ chosen_table }}</div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="heading">Cart</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in table_carts %}
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price }}</td>
+            <td>{{ item.total_price }}</td>
+          </tr>
+          {% endfor %}
+            </tbody>
+        </table>
+        <div class="cart-total">
+            <p>Grand Total: $ <span>{{ total_price }}</span></p>
+            <form id="order-form" method="post">
+              {% csrf_token %}
+              <a href="{% url 'place_order' chosen_table %}">Place Order</a>
+            </form>
+          </div>
+    </div>
+</body>
+
+</html>
