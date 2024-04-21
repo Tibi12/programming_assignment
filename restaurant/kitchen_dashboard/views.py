@@ -39,7 +39,7 @@ def kitchen_dashboard(request):
 def orders(request): 
     if not request.user.is_authenticated:
         return redirect('user_login')
-           
+
     orders = Order.objects.filter().order_by('-id')  
     context = { 'orders': orders }
         
@@ -60,7 +60,6 @@ def deliver_order(request):
     order.save()
     
     return redirect('kitchen_dashboard')
-
 
 def vacate_table(request):
     table_number = request.POST.get('table_number')
