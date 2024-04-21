@@ -5,7 +5,7 @@ from .models import Table, TableCart, Order
 def kitchen_dashboard(request):
     if not request.user.is_authenticated:
         return redirect('user_login')
-        
+
     orders = Order.objects.filter(order_type="active").order_by('table')  
 
     free_table_flags = {}
@@ -36,7 +36,10 @@ def kitchen_dashboard(request):
         
     return render(request, 'dashboard.html', context)
 
-def orders(request):    
+def orders(request): 
+    if not request.user.is_authenticated:
+        return redirect('user_login')
+           
     orders = Order.objects.filter().order_by('-id')  
     context = { 'orders': orders }
         
