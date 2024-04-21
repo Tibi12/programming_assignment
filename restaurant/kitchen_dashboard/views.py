@@ -7,7 +7,6 @@ def kitchen_dashboard(request):
         return redirect('user_login')
 
     orders = Order.objects.filter(order_type="active").order_by('table')  
-
     free_table_flags = {}
     free_tables = {}
     
@@ -31,7 +30,7 @@ def kitchen_dashboard(request):
     for order in orders:
         if free_tables[order.table.table_number] == True:
             order.vacate = True
-        
+    
     context = {'orders': orders, 'free_tables': free_tables}
         
     return render(request, 'dashboard.html', context)
@@ -39,7 +38,7 @@ def kitchen_dashboard(request):
 def orders(request): 
     if not request.user.is_authenticated:
         return redirect('user_login')
-
+    
     orders = Order.objects.filter().order_by('-id')  
     context = { 'orders': orders }
         
