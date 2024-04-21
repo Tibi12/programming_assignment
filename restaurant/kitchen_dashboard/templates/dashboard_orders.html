@@ -1,74 +1,56 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orders</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{% static 'dashboard_styles.css' %}"
-    />
-  </head>
-  <body>
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard_styles.css' %}" />
+</head>
+
+<body>
     <nav class="navbar">
-      <div class="container">
-        <div class="nav-items">
-          <a
-            style="text-decoration: none"
-            class="nav-item"
-            href="{% url 'kitchen_dashboard' %}"
-            >Dashboard</a
-          >
-          <a
-            style="text-decoration: none"
-            class="nav-item"
-            href="#"
-            >Orders</a
-          >
-          <a
-            style="text-decoration: none"
-            class="nav-item"
-            href="{% url 'logout' %}"
-            >Logout</a
-          >
+        <div class="container">
+            <div class="nav-items">
+                <a style="text-decoration: none" class="nav-item" href="{% url 'kitchen_dashboard' %}">Dashboard</a>
+                <a style="text-decoration: none" class="nav-item" href="#">Orders</a>
+                <a style="text-decoration: none" class="nav-item" href="{% url 'logout' %}">Logout</a>
+            </div>
         </div>
-      </div>
     </nav>
 
     <div class="container">
-      <h1 class="heading">Dashboard</h1>
-      <table class="cart-table">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Table</th>
-            <th>Item</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for item in orders %}
-          <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.table.table_number }}</td>
-            <td>{{ item.menu_item.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.price }}</td>
-            <td>
-              <span class="status-chip {{ item.status }}"
-              >{{ item.status }}</span
-              >
-            </td>
-            <td>{{ item.order_type }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+        <h1 class="heading">Dashboard</h1>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Table</th>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in orders %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.table.table_number }}</td>
+                    <td>{{ item.menu_item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>
+                        <span class="status-chip {{ item.status }}">{{ item.status }}</span>
+                    </td>
+                    <td>{{ item.order_type }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
-  </body>
+</body>
+
 </html>
