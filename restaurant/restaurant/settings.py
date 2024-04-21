@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'user.apps.UserConfig',
     'menu.apps.MenuConfig',
+    'kitchen_dashboard.apps.KitchenDashboardConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
