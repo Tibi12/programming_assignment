@@ -14,8 +14,8 @@
         <div class="container">
             <div class="nav-items">
                 <a style="text-decoration: none;" class="nav-item" href="#">Home</a>
-                <a class="nav-item" href="#">Cart</a>
-                <a class="nav-item" href="#">Orders</a>
+                <a class="nav-item" href="{% url 'menu_cart' %}">Cart</a>
+                <a class="nav-item" href="{% url 'menu_orders' %}">Orders</a>
             </div>
             <div>
                 {% if not already_selected %}
