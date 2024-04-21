@@ -14,8 +14,8 @@
         <div class="container">
             <div class="nav-items">
                 <a style="text-decoration: none;" class="nav-item" href="{% url 'menu_home' %}?table={{ chosen_table }}">Home</a>
-                <div class="choose-table">Chosen Table : {{ chosen_table }}</div>
             </div>
+            <div class="choose-table">Chosen Table : {{ chosen_table }}</div>
         </div>
     </nav>
 
@@ -32,22 +32,23 @@
             </thead>
             <tbody>
                 {% for item in table_carts %}
-          <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.quantity }}</td>
-            <td>{{ item.price }}</td>
-            <td>{{ item.total_price }}</td>
-          </tr>
-          {% endfor %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.total_price }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
         <div class="cart-total">
             <p>Grand Total: $ <span>{{ total_price }}</span></p>
             <form id="order-form" method="post">
-              {% csrf_token %}
-              <a href="{% url 'place_order' chosen_table %}">Place Order</a>
+                {% csrf_token %}
+                <input type="hidden" name="table_number" id="selected-table" value="" />
+                <a href="{% url 'place_order' chosen_table %}">Place Order</a>
             </form>
-          </div>
+        </div>
     </div>
 </body>
 
