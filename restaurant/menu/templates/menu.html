@@ -34,8 +34,7 @@
                 <select class="choose-table" id="choose-table" autocomplete="off" value="{{ already_selected }}">
                     <option value="">Choose table</option>
                     {% for table in tables %}
-                    <option value="{{ table.table_number }}" '{% if table.table_number==already_selected %} selected {%
-                        endif %}'>
+                    <option value="{{ table.table_number }}">
                         {{ table.table_number }}
                     </option>
                     {% endfor %}
