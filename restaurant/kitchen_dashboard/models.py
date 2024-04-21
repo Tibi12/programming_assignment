@@ -1,4 +1,5 @@
 from django.db import models
+from menu.models import Menu
 
 class Table(models.Model):
     table_number = models.PositiveIntegerField(unique=True)
