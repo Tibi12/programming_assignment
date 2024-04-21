@@ -17,6 +17,29 @@
                 <a class="nav-item" href="#">Cart</a>
                 <a class="nav-item" href="#">Orders</a>
             </div>
+            <div>
+                {% if not already_selected %}
+                <select class="choose-table" id="choose-table" autocomplete="off">
+                    <option value="">Choose table</option>
+                    {% for table in tables %}
+                    <option value="{{ table.table_number }}">
+                        {{ table.table_number }}
+                    </option>
+                    {% endfor %}
+                </select>
+                {% else %}
+
+                <select class="choose-table" id="choose-table" autocomplete="off" value="{{ already_selected }}">
+                    <option value="">Choose table</option>
+                    {% for table in tables %}
+                    <option value="{{ table.table_number }}" {% if table.table_number==already_selected %} selected {%
+                        endif %}>
+                        {{ table.table_number }}
+                    </option>
+                    {% endfor %}
+                </select>
+                {% endif %}
+            </div>
         </div>
     </nav>
 
